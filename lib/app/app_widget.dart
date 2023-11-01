@@ -31,6 +31,11 @@ class MyApp extends StatelessWidget {
       ],
       title: 'Flutter Demo',
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: primaryColor,
+          primary: primaryColor,
+          background: primaryColor,
+        ),
         // dialogTheme: const DialogTheme(
         // surfaceTintColor: Colors.white,
         // ),
@@ -41,11 +46,9 @@ class MyApp extends StatelessWidget {
         // ),
         useMaterial3: true,
         textTheme: const TextTheme(
-          bodyMedium: TextStyle(
-            fontSize: 18,
-            color: textColor,
-          ),
-          labelLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          bodyLarge: TextStyle(fontSize: 18, height: 1.1, color: textColor),
+          // bodyMedium: TextStyle(fontSize: 18, color: textColor),
+          labelLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
       localizationsDelegates: [

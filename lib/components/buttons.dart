@@ -26,6 +26,29 @@ class PrimaryButton extends StatelessWidget {
   }
 }
 
+class PrimaryButtonNew extends StatelessWidget {
+  const PrimaryButtonNew(
+      {super.key, required this.child, required this.onPressed});
+  final Widget child;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.all(8),
+        backgroundColor: primaryColor,
+        foregroundColor: foregroundPrimaryButtonColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+      ),
+      onPressed: () => onPressed(),
+      child: child,
+    );
+  }
+}
+
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton(
       {super.key, required this.label, required this.onPress});
