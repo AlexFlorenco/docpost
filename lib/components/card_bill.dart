@@ -1,4 +1,4 @@
-import 'package:docpost/app/pages/bill_page.dart';
+import 'package:docpost/app/pages/bill/bill_page.dart';
 import 'package:flutter/material.dart';
 
 class CardBill extends StatefulWidget {

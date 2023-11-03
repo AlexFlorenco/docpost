@@ -1,4 +1,4 @@
-import 'package:docpost/app/pages/pdf_viewer.dart';
+import 'package:docpost/app/pages/bill/pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

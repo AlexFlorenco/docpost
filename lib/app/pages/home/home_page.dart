@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:month_year_picker/month_year_picker.dart';
-import '../../components/card_bill.dart';
+import '../../../components/card_bill.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

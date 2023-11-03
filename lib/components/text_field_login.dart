@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
-class TextFieldLogin extends StatefulWidget {
-  TextFieldLogin({super.key, required this.emailController});
+class TextFormFieldLogin extends StatefulWidget {
+  TextFormFieldLogin({super.key, required this.emailController});
 
   TextEditingController emailController;
 
   @override
-  State<TextFieldLogin> createState() => _TextFieldLoginState();
+  State<TextFormFieldLogin> createState() => _TextFormFieldLoginState();
 }
 
-class _TextFieldLoginState extends State<TextFieldLogin> {
+class _TextFormFieldLoginState extends State<TextFormFieldLogin> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -26,6 +24,8 @@ class _TextFieldLoginState extends State<TextFieldLogin> {
         }
         return null;
       },
+      textInputAction: TextInputAction.next,
+      keyboardType: TextInputType.emailAddress,
       decoration: const InputDecoration(
         border: OutlineInputBorder(),
         prefixIcon: Icon(
@@ -47,15 +47,19 @@ class _TextFieldLoginState extends State<TextFieldLogin> {
   }
 }
 
-class TextFormPassword extends StatefulWidget {
-  TextFormPassword({super.key, required this.passwordController});
+class TextFormFieldPassword extends StatefulWidget {
+  TextFormFieldPassword(
+      {super.key,
+      required this.passwordController,
+      required this.functionSubmit});
   TextEditingController passwordController;
+  Function functionSubmit;
 
   @override
-  State<TextFormPassword> createState() => _TextFormPasswordState();
+  State<TextFormFieldPassword> createState() => _TextFormFieldPasswordState();
 }
 
-class _TextFormPasswordState extends State<TextFormPassword> {
+class _TextFormFieldPasswordState extends State<TextFormFieldPassword> {
   bool _passwordVisible = true;
 
   @override
@@ -68,6 +72,7 @@ class _TextFormPasswordState extends State<TextFormPassword> {
         }
         return null;
       },
+      onFieldSubmitted: (value) => widget.functionSubmit(),
       obscureText: _passwordVisible,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
@@ -81,8 +86,8 @@ class _TextFormPasswordState extends State<TextFormPassword> {
               });
             },
             icon: _passwordVisible
-                ? const Icon(Icons.visibility)
-                : const Icon(Icons.visibility_off)),
+                ? const Icon(Icons.visibility_outlined)
+                : const Icon(Icons.visibility_off_outlined)),
         label: const Text(
           'Senha',
           style: TextStyle(fontSize: 16),

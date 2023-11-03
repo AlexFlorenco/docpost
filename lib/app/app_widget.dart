@@ -1,12 +1,14 @@
-import 'package:docpost/app/pages/home_page.dart';
-import 'package:docpost/app/pages/login_page.dart';
-import 'package:docpost/app/pages/preferences_page.dart';
+import 'package:docpost/app/controllers/auth_controller.dart';
+import 'package:docpost/app/pages/home/home_page.dart';
+import 'package:docpost/app/pages/login/login_page.dart';
+import 'package:docpost/app/pages/preferences/preferences_page.dart';
+import 'package:docpost/app/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
-import '../constants.dart';
+import '../components/constants.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -36,14 +38,6 @@ class MyApp extends StatelessWidget {
           primary: primaryColor,
           background: primaryColor,
         ),
-        // dialogTheme: const DialogTheme(
-        // surfaceTintColor: Colors.white,
-        // ),
-        // primarySwatch: Colors.blue,
-        // colorScheme: ColorScheme.fromSeed(
-        //   primary: Colors.blue,
-        //   seedColor: Colors.blue,
-        // ),
         useMaterial3: true,
         textTheme: const TextTheme(
           bodyLarge: TextStyle(fontSize: 18, height: 1.1, color: textColor),

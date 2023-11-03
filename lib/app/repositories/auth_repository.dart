@@ -2,15 +2,11 @@ import 'package:dio/dio.dart';
 
 class AuthRepository {
   final Dio dio = Dio();
-  String email;
-  String password;
 
-  AuthRepository({
-    required this.email,
-    required this.password,
-  });
+  AuthRepository();
 
-  authentication() async {
+  Future authenticationAPI(
+      {required String email, required String password}) async {
     try {
       var response =
           await dio.post('https://docpost-mvp.onrender.com/api/login', data: {
@@ -18,11 +14,10 @@ class AuthRepository {
         'senha': password,
       });
       if (response.statusCode == 200) {
-        print('Login bem sucedido!');
-        print(response.data);
+        return (response.data['response']['accessToken']);
       }
     } catch (e) {
-      print('Erro no login!');
+      return null;
     }
   }
 }

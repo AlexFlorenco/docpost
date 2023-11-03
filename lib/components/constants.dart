@@ -7,3 +7,5 @@ const backgroundContainer = Color(0xffffffff);
 
 const textColor = Color(0xff303030);
 const textColorWhite = Color(0xffffffff);
+
+const error = Color(0xffCF4949);
