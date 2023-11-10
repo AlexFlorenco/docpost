@@ -1,3 +1,4 @@
+import 'package:docpost/app/controllers/auth_controller.dart';
 import 'package:docpost/app/pages/home/home_page.dart';
 import 'package:docpost/app/pages/login/login_page.dart';
 import 'package:docpost/app/pages/preferences/preferences_page.dart';
@@ -9,12 +10,19 @@ import 'package:month_year_picker/month_year_picker.dart';
 import '../components/constants.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+    final AuthController authController = AuthController();
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      initialRoute: '/',
+    return FutureBuilder<bool>(
+      future: authController.isAuthenticated(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else {
+          return GetMaterialApp(
+            initialRoute: snapshot.data! ? '/home' : '/',
       getPages: [
         GetPage(
           name: '/',
@@ -50,5 +58,5 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: [const Locale('pt', 'BR')],
     );
-  }
+  }});}
 }
