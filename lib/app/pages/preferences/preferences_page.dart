@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart';
 
 class PreferencesPage extends StatefulWidget {
   const PreferencesPage({super.key});
@@ -41,7 +44,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                     'Conectar e-mails',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(height: 18),
+                  const SizedBox(height: 18),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 42,
@@ -49,7 +52,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(8)),
                   ),
-                  SizedBox(height: 14),
+                  const SizedBox(height: 14),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 42,
@@ -57,7 +60,7 @@ class _PreferencesPageState extends State<PreferencesPage> {
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(8)),
                   ),
-                  SizedBox(height: 14),
+                  const SizedBox(height: 14),
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: 42,
@@ -140,6 +143,15 @@ class _PreferencesPageState extends State<PreferencesPage> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  GestureDetector(
+                      child: const Text('Sair'),
+                      onTap: () {
+                        const FlutterSecureStorage().deleteAll();
+                        Get.toNamed('/');
+                      })
                 ],
               ),
             ),
