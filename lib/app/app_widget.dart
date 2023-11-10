@@ -1,8 +1,6 @@
-import 'package:docpost/app/controllers/auth_controller.dart';
 import 'package:docpost/app/pages/home/home_page.dart';
 import 'package:docpost/app/pages/login/login_page.dart';
 import 'package:docpost/app/pages/preferences/preferences_page.dart';
-import 'package:docpost/app/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
