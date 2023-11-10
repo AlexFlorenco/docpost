@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 
 class PreferencesPage extends StatefulWidget {
   const PreferencesPage({super.key});

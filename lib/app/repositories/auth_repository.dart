@@ -5,7 +5,7 @@ class AuthRepository {
 
   AuthRepository();
 
-  Future authenticationAPI(
+  Future<String?> authenticationAPI(
       {required String email, required String password}) async {
     try {
       var response =
@@ -14,10 +14,12 @@ class AuthRepository {
         'senha': password,
       });
       if (response.statusCode == 200) {
+        // print('Token: ' + response.data['response']['accessToken']);
         return (response.data['response']['accessToken']);
       }
     } catch (e) {
       return null;
     }
+    return null;
   }
 }
