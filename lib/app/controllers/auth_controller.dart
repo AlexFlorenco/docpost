@@ -1,10 +1,19 @@
 import 'package:docpost/app/controllers/database/user_secure_storage.dart';
+import 'package:get/get.dart';
 import 'dart:convert';
 import '../repositories/auth_repository.dart';
 
-class AuthController {
+class AuthController extends GetxController {
   final authRepository = AuthRepository();
   final storage = UserSecureStorage();
+  RxBool isAuthenticated = false.obs;
+  RxBool isLoading = true.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    checkAuthentication();
+  }
 
   Future<bool> login(String email, String password) async {
     var token = await authRepository.authenticationAPI(
@@ -15,22 +24,26 @@ class AuthController {
     if (token != null) {
       var expires_in = parseJwt(token)['expires_in'].toString();
       UserSecureStorage().saveToken(token, expires_in);
+      isAuthenticated.value = true;
       return true;
     } else {
+      isAuthenticated.value = false;
       return false;
     }
   }
 
-  Future<bool> isAuthenticated() async {
+  Future<void> checkAuthentication() async {
     var token = await storage.getToken();
     if (token.isNotEmpty &&
         int.parse(token['expires_in']!) >
             DateTime.now().millisecondsSinceEpoch / 1000) {
       // print('Usuário autenticado!');
-      return true;
+      isAuthenticated.value = true;
+    } else {
+      // print('Usuário não autenticado!');
+      isAuthenticated.value = false;
     }
-    // print('Usuário não autenticado!');
-    return false;
+    isLoading.value = false;
   }
 }
 
