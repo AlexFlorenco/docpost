@@ -9,20 +9,24 @@ import 'package:month_year_picker/month_year_picker.dart';
 
 import '../components/constants.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({super.key});
-  final AuthController authController = AuthController();
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<bool>(
-        future: authController.isAuthenticated(),
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else {
-            return GetMaterialApp(
-              initialRoute: snapshot.data! ? '/home' : '/',
+    return Obx(() {
+      return authController.isLoading.value
+          ? Placeholder()
+          : GetMaterialApp(
+              initialRoute:
+                  authController.isAuthenticated.value ? '/home' : '/',
               getPages: [
                 GetPage(
                   name: '/',
@@ -53,14 +57,13 @@ class MyApp extends StatelessWidget {
                       TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
-              localizationsDelegates: [
-                GlobalWidgetsLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                MonthYearPickerLocalizations.delegate,
-              ],
-              supportedLocales: [const Locale('pt', 'BR')],
+              // localizationsDelegates: [
+              //   GlobalWidgetsLocalizations.delegate,
+              //   GlobalMaterialLocalizations.delegate,
+              //   MonthYearPickerLocalizations.delegate,
+              // ],
+              // supportedLocales: [const Locale('pt', 'BR')],
             );
-          }
-        });
+    });
   }
 }
